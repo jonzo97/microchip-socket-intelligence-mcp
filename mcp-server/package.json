@@ -1,0 +1,25 @@
+{
+  "name": "mcp-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts",
+    "setup-db": "ts-node src/setup-database.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "chromadb": "^1.8.1",
+    "@types/node": "^24.3.0",
+    "openai": "^4.67.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
