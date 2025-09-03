@@ -2,16 +2,30 @@
 
 > AI-powered competitive intelligence and block diagram generation for Microchip FAEs
 
-## 🚀 Quick Start (5 minutes)
+## 🚀 Quick Start
 
+### One-Command Background Launch (After Setup)
 ```bash
-# Clone and setup
+~/launch-socket-intel.sh  # Starts everything in background
+~/stop-socket-intel.sh    # Stops everything
+```
+
+### Initial Setup (First Time Only)
+```bash
+# Clone repository
 git clone git@github.com:jonzo97/microchip-socket-intelligence-mcp.git
 cd microchip-socket-intelligence-mcp
-./scripts/setup.sh
 
-# That's it! The setup script handles everything
+# Install and setup
+npm install
+export OPENAI_API_KEY="your-key"
+npm run setup-db
+
+# Create launch scripts (see LAUNCH-GUIDE.md)
 ```
+
+See [LAUNCH-GUIDE.md](LAUNCH-GUIDE.md) for background process management.  
+See [QUICKSTART.md](QUICKSTART.md) for detailed setup instructions.
 
 ## 🎯 What This Does
 
