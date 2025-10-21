@@ -48,24 +48,26 @@ export class ChromaResearchProcessor {
    */
   async processAllResearchFiles(researchPath: string): Promise<ResearchFile[]> {
     console.log('📁 Scanning research directories...');
-    
+
     const researchFiles: ResearchFile[] = [];
-    
-    // Process socket-research-batch outputs
-    const batchOutputsPath = path.join(researchPath, 'socket-research-batch', 'outputs');
-    if (fs.existsSync(batchOutputsPath)) {
-      const batchFiles = await this.processDirectory(batchOutputsPath, 'batch_research');
-      researchFiles.push(...batchFiles);
+
+    // Process enhanced-context directory (all research files)
+    const enhancedContextPath = path.join(researchPath, 'intelligence-database', 'enhanced-context');
+    if (fs.existsSync(enhancedContextPath)) {
+      console.log(`📁 Reading from: ${enhancedContextPath}`);
+      const allFiles = await this.processDirectory(enhancedContextPath, 'enhanced_research');
+      researchFiles.push(...allFiles);
+
+      // Log breakdown
+      const deepFiles = allFiles.filter(f => f.filename.startsWith('deep-'));
+      const claudeFiles = allFiles.filter(f => f.filename.startsWith('enhanced-'));
+      console.log(`  📊 Found ${claudeFiles.length} Claude research files`);
+      console.log(`  🔬 Found ${deepFiles.length} Gemini deep research files`);
+    } else {
+      console.warn(`⚠️ Enhanced context directory not found: ${enhancedContextPath}`);
     }
 
-    // Process socket-research-priority deep research
-    const priorityPath = path.join(researchPath, 'socket-research-priority', 'output-dropzones');
-    if (fs.existsSync(priorityPath)) {
-      const priorityFiles = await this.processDirectory(priorityPath, 'deep_research');
-      researchFiles.push(...priorityFiles);
-    }
-
-    console.log(`📊 Processed ${researchFiles.length} research files`);
+    console.log(`📊 Processed ${researchFiles.length} research files for vector database`);
     return researchFiles;
   }
 

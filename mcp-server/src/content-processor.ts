@@ -67,21 +67,23 @@ export class ContentProcessor {
    */
   async processAllResearchContent(basePath: string): Promise<SocketIntelligenceDatabase> {
     console.log('🔍 Starting comprehensive research content processing...');
-    
-    const researchFiles: ProcessedResearchFile[] = [];
-    
-    // Process socket-research-batch outputs (40 files)
-    const batchOutputs = path.join(basePath, 'socket-research-batch', 'outputs');
-    if (fs.existsSync(batchOutputs)) {
-      const batchFiles = await this.processDirectory(batchOutputs, 'batch_research');
-      researchFiles.push(...batchFiles);
-    }
 
-    // Process socket-research-priority outputs (19 files)
-    const priorityOutputs = path.join(basePath, 'socket-research-priority', 'output-dropzones');
-    if (fs.existsSync(priorityOutputs)) {
-      const priorityFiles = await this.processDirectory(priorityOutputs, 'deep_research');
-      researchFiles.push(...priorityFiles);
+    const researchFiles: ProcessedResearchFile[] = [];
+
+    // Process enhanced-context directory (all research files)
+    const enhancedContextPath = path.join(basePath, 'intelligence-database', 'enhanced-context');
+    if (fs.existsSync(enhancedContextPath)) {
+      console.log(`📁 Reading from: ${enhancedContextPath}`);
+      const allFiles = await this.processDirectory(enhancedContextPath, 'enhanced_research');
+      researchFiles.push(...allFiles);
+
+      // Separate deep research files for logging
+      const deepFiles = allFiles.filter(f => f.filename.startsWith('deep-'));
+      const claudeFiles = allFiles.filter(f => f.filename.startsWith('enhanced-'));
+      console.log(`  📊 Found ${claudeFiles.length} Claude research files`);
+      console.log(`  🔬 Found ${deepFiles.length} Gemini deep research files`);
+    } else {
+      console.warn(`⚠️ Enhanced context directory not found: ${enhancedContextPath}`);
     }
 
     // Generate intelligence profiles from processed content
