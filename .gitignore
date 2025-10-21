@@ -37,3 +37,4 @@ desktop.ini
 *.temp
 *.bak
 *~
+*.backup-*
