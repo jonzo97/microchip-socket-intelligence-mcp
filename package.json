@@ -8,7 +8,12 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd mcp-server && npm run build",
+    "setup-db": "cd mcp-server && npm run setup-db",
+    "setup-db-v2": "cd mcp-server && npm run build && node dist/setup-database-v2.js",
+    "test-chunking": "node test-chunking.js",
+    "test-integration": "./test-integration.sh"
   },
   "keywords": [],
   "author": "",

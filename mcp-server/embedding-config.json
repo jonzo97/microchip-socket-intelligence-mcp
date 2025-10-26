@@ -1,0 +1,35 @@
+{
+  "comment": "Configuration for intelligent chunking and embedding",
+  "embedding": {
+    "useLocal": true,
+    "model": "all-mpnet-base-v2",
+    "fallbackToOpenAI": true,
+    "openaiModel": "text-embedding-3-small"
+  },
+  "chunking": {
+    "enabled": true,
+    "maxTokens": 384,
+    "overlapTokens": 50,
+    "sectionAware": true
+  },
+  "chroma": {
+    "url": "http://localhost:8000",
+    "collectionName": "socket-intelligence"
+  },
+  "models": {
+    "all-mpnet-base-v2": {
+      "description": "Fast, balanced quality (recommended)",
+      "dimensions": 768,
+      "maxTokens": 384,
+      "speed": "fast",
+      "quality": "good"
+    },
+    "BAAI/bge-large-en-v1.5": {
+      "description": "High quality, slower",
+      "dimensions": 1024,
+      "maxTokens": 512,
+      "speed": "medium",
+      "quality": "excellent"
+    }
+  }
+}
